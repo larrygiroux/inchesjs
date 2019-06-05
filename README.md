@@ -33,3 +33,5 @@ The above plain object is returned by the ._process() method which takes integer
 etc.
 
 the .add() and .less() and .update() methods will take the same types of inputs as the constructor.
+
+Demo and docs at inchesjs.com
