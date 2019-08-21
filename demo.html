@@ -190,8 +190,9 @@
 	<h3 id="update_method"><span class="method">.update(input = {})</span> method</h3>
 	<div class="para">
 		Updates the dimension value of an Inches instance on which it is called without having to save a new instance
-		to the existing variablethe constructor. The input may be another Inches instance,
-		an Inches.parts object or chaotic dimension input like that passed to the constructor.
+		to the existing variable the constructor. The input may be another Inches instance,
+		an Inches.parts formatted object or chaotic dimension input like that passed to the constructor.
+		If an object is passed, the mm property is ignored and reset based on the .f, .i and .num values passed.
 	</div>
 	<h3 id="add_method"><span class="method">.add(input = {})</span> method</h3>
 	<div class="para">
@@ -312,7 +313,7 @@
 		<br>
 	</div>
 </div>
-<script src="Inches.min.js"></script>
+<script src="Inches.min.js?v2=v2"></script>
 <script>
 	var inches = new Inches(), addInches, lessInches;
 	strings = function(target = 'json1'){

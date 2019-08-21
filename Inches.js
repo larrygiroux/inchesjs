@@ -287,9 +287,11 @@ class Inches{
 			o.i = o.i*factor;
 		}
 		if(o){ // If o, then an acceptable object, number or string must have been passed.
-			o.f		= 0;
-			o.i		= o.hasOwnProperty('i')? 	o.i: 	0;
-			o.num	= o.hasOwnProperty('num')? 	o.num: 	0;
+			var f_in_inches = (o.hasOwnProperty('f') && o.f)? o.f*12: 0;
+			o.f				= 0;
+			o.i				= o.hasOwnProperty('i')? 	o.i: 	0;
+			o.i			   += f_in_inches;
+			o.num			= o.hasOwnProperty('num')? 	o.num: 	0;
 			return o;
 		}
 		this.err_msg = 'Inches._process() method failed to return object.';
