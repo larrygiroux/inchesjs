@@ -132,15 +132,16 @@ class Inches{
 	str(long_form = false){ // roughly standard imperial construction str format.
 		var increments		= this._increments();
 		this.inc			= increments.indexOf(this.inc)? this.inc: 16;
+		var inc_accuracy	= 1/this.inc;
 		var return_value 	= '',
 			numerator		= Math.abs(this.parts.num),
 			denominator		= 2048,
+			use_feet		= Math.abs(this.parts.f),
 			use_inches		= Math.abs(this.parts.i),
 			use_fraction	= '',
 			minus_sign		= this.dec(0,10,this.parts) < 0? '-': 	'';
 		var long_form_ft	= long_form? 		"ft": 	"'";
 		var long_form_in	= long_form? 		"in": 	'"';
-		if(this.parts.f) return_value = Math.abs(this.parts.f) + long_form_ft + "-"; // foot value is not zero, so add to the string.
 		if(numerator && denominator){
 			if(denominator > this.inc){ // denominator is still larger than specified by constructor arguments.
 				numerator 	= Math.round((this.inc*numerator)/denominator).toFixed();
@@ -155,9 +156,13 @@ class Inches{
 				numerator = 0;
 				denominator = 0;
 			}
+			while(use_inches >= 12){
+				use_inches -= 12;
+				use_feet++;
+			}
 			if(numerator*1) use_fraction = ' ' + numerator + '/' + denominator; // Only add the fraction if this.parts.num (numerator) is greater than zero.	
 		}
-		return_value = return_value + use_inches + use_fraction + long_form_in; // always add inches even if 0
+		return_value = (use_feet? use_feet + long_form_ft + "-": "") + use_inches + use_fraction + long_form_in; // always add inches even if 0
 		return minus_sign + return_value;
 	}
 	// metric
