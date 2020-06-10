@@ -134,6 +134,7 @@ class Inches{
 		this.inc			= increments.indexOf(this.inc)? this.inc: 16;
 		var inc_accuracy	= 1/this.inc;
 		var return_value 	= '',
+			ft_str			= '', // left at length 0 if not needed (length determines wether or not this method renders inch string of 0)
 			numerator		= Math.abs(this.parts.num),
 			denominator		= 2048,
 			use_feet		= Math.abs(this.parts.f),
@@ -156,13 +157,15 @@ class Inches{
 				numerator = 0;
 				denominator = 0;
 			}
-			while(use_inches >= 12){
+			while(use_inches > this.max_inches){
 				use_inches -= 12;
 				use_feet++;
 			}
 			if(numerator*1) use_fraction = ' ' + numerator + '/' + denominator; // Only add the fraction if this.parts.num (numerator) is greater than zero.	
 		}
-		return_value = (use_feet? use_feet + long_form_ft + "-": "") + use_inches + use_fraction + long_form_in; // always add inches even if 0
+		ft_str			= use_feet? 	use_feet + long_form_ft + "-": 	"";
+		use_inches		= use_inches?	use_inches + "":				"";
+		return_value 	= ft_str + ((ft_str.length && !use_inches.length)? "0": use_inches) + use_fraction + long_form_in; // always add inches even if 0
 		return minus_sign + return_value;
 	}
 	// metric
