@@ -34,4 +34,7 @@ etc.
 
 the .add() and .less() and .update() methods will take the same types of inputs as the constructor.
 
-Demo and docs at inchesjs.com
+Demo and docs at https://inchesjs.com
+
+<img width="737" alt="image" src="https://github.com/user-attachments/assets/9c2b31bb-ba6e-42f7-b72a-865de0854e62" />
+
